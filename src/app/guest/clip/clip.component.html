@@ -1,0 +1,59 @@
+<div class="container card-mh" *ngIf="(clipVM$ | async) as vm; else loading">
+  <div class="row">
+    <div class="col-12 col-lg-9">
+      <div class="card obj-body">
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" [src]="vm.clip.embedUrl | safe: 'resourceUrl'" allowfullscreen></iframe>
+        </div>
+        <div class="card-body p-0-10 mt-10 pbot-30">
+          <p class="fs-16 mbot-5 sep">{{vm.clip.name}}</p>
+          <p class="fs-14 mbot-5">{{vm.clip.description}}</p>
+          <div class="hs mt-10">Movie and stars:</div>
+          <a class="ilmov-tag" routerLink="/movie/{{vm.movie.id}}">
+            <img [style.backgroundImage]="vm.movie.bgmqImage">
+            <span>{{vm.movie.name}}</span>
+          </a>
+          <a class="ilmov-tag" *ngFor="let star of vm.stars" routerLink="/star/{{star.id}}">
+            <img [style.backgroundImage]="star.bgmqImage">
+            <span>{{star.name}}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-lg-3">
+      <div class="row">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-12" *ngFor="let simvm of vm.similarClips">
+          <a class="card alt-card" routerLink="/clip/{{simvm.clip.id}}">
+            <img class="card-img-top mh-1" [src]="simvm.clip.mqImage" alt="">
+            <div class="card-body p-5-10">
+              <p class="card-text fs-14 mb-0">{{simvm.clip.name}}</p>
+              <p class="card-text fs-12 ta-r btop">{{simvm.movie.name}}</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card b-0 trans">
+    <div class="card-header fs-18 fw-7 b-0 obj-header">
+      Other Scenes
+    </div>
+    <div class="card-body p-0" *ngIf="(otherClips$ | async) as otherClips; else loading">
+      <div class="row">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let clipvm of otherClips">
+          <a class="card alt-card" routerLink="/clip/{{clipvm.clip.id}}">
+            <img class="card-img-top mh-1" [src]="clipvm.clip.mqImage" alt="">
+            <div class="card-body p-5-10">
+              <p class="card-text fs-14 mb-0">{{clipvm.clip.name}}</p>
+              <p class="card-text fs-12 ta-r btop">{{clipvm.movie.name}}</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
+<ng-template #loading>
+  <app-roller></app-roller>
+</ng-template>

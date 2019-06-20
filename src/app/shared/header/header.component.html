@@ -1,0 +1,44 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light ilmov-nav">
+  <a class="navbar-brand" routerLink="/">
+    <img src="/assets/icons/ilmovies.png" class="d-inline-block align-top main-icon" alt=""> ILMovies
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/clips">Clips</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/movies">Movies</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/stars">Stars</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/admin/dashboard">Dashboard</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Most Popular
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" routerLink="/star/1">Nicolas Cage</a>
+          <a class="dropdown-item" routerLink="/star/2">Sean Connery</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" routerLink="/movie/1">The Rock</a>
+          <a class="dropdown-item" routerLink="/movie/3">Con Air</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" routerLink="/clip/4">Cage vs Travolta</a>
+          <a class="dropdown-item" routerLink="/clip/9">Cage Green Smoke</a>
+        </div>
+      </li>
+    </ul>
+    <button class="btn login-btn my-2 my-sm-0" *ngIf="auth.isAuthenticated" (click)="logOut()">Logout</button>
+    <button class="btn login-btn my-2 my-sm-0" *ngIf="!auth.isAuthenticated" routerLink="/login">Login</button>
+  </div>
+</nav>

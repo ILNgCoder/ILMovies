@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="card-mh">
+    <div *ngIf="!isFrontend">
+      <div class="error-wrapper">
+        <h1 *ngIf="isValidCode">Code: {{code}}</h1>
+        <p class="lead">{{text}}</p>
+      </div>
+    </div>
+    <div *ngIf="isFrontend">
+      <div class="error-wrapper">
+        <p class="lead">{{text}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

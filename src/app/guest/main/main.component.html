@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark main-image" routerLink="/clip/9">
+    <div class="col-md-6 px-0">
+      <h1 class="display-4">ILMovies</h1>
+      <p class="lead my-3">Your favorite movie scenes</p>
+      <p class="lead mb-0"><a href="#" class="text-white font-weight-bold"></a></p>
+    </div>
+  </div>
+  <div class="row mb-2">
+    <div class="col-md-6">
+      <div class="row no-gutters flex-md-row mb-4 h-md-250 alt-card">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-primary">New clip</strong>
+          <h3 class="mb-0">Prisoner Introductions</h3>
+          <div class="mb-1 text-muted">June 20</div>
+          <p class="card-text mb-auto">New scene from movie Con Air</p>
+          <a routerLink="/clip/2" class="stretched-link">Show more</a>
+        </div>
+        <div class="col-auto d-none d-lg-block post-image bs-auto bp-center"
+          style="background:url(https://ytimg.googleusercontent.com/vi/rRKCMVuDT4g/sddefault.jpg)">
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="row no-gutters flex-md-row mb-4 h-md-250 alt-card">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-success">New movie</strong>
+          <h3 class="mb-0">Con Air</h3>
+          <div class="mb-1 text-muted">June 20</div>
+          <p class="mb-auto">Con Air is a 1997 American action thriller film directed by Simon West, written by Scott
+            Rosenberg...
+          </p>
+          <a routerLink="/movie/3" class="stretched-link">Show more</a>
+        </div>
+        <div class="col-auto d-none d-lg-block post-image"
+          style="background:url(https://ytimg.googleusercontent.com/vi/3T0m9nvGws0/mqdefault.jpg)">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card b-0 trans mt-0 card-mh">
+    <div class="card-header fs-18 fw-7 b-0 obj-header">
+      Scenes
+    </div>
+    <div class="card-body p-0" *ngIf="(clips$ | async) as clips; else loading">
+      <div class="row">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let vm of clips">
+          <a class="card alt-card" routerLink="/clip/{{vm.clip.id}}">
+            <img class="card-img-top mh-1" [src]="vm.clip.mqImage" alt="">
+            <div class="card-body p-5-10">
+              <p class="card-text fs-14 mb-0">{{vm.clip.name}}</p>
+              <p class="card-text fs-12 ta-r btop">{{vm.movie.name}}</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
+<ng-template #loading>
+  <app-roller></app-roller>
+</ng-template>

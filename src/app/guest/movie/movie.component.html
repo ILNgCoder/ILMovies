@@ -1,0 +1,70 @@
+<div class="container card-mh" *ngIf="(movieVM$ | async) as vm; else loading">
+  <div class="card obj-body">
+    <div class="card-header fs-18 fw-7 obj-header sep">{{vm.movie.name}} ({{vm.movie.year}})</div>
+    <div class="card-body p-0 b-06 btop-0">
+      <div class="row">
+        <div class="col-12 col-lg-5">
+          <img class="w-100" [src]="vm.movie.mqImage" alt="">
+        </div>
+        <div class="col-12 col-lg-7">
+          <div class="p-0-10 mt-10">
+            <p class="mbot-5 sep">
+              <span class="fw-7 d-ib">Movie:</span> {{vm.movie.name}}<br>
+              <span class="fw-7 d-ib">Year:</span> {{vm.movie.year}}<br>
+              <span class="fw-7 d-ib">Director:</span> {{vm.movie.director}}
+            </p>
+          </div>
+          <div class="fs-14 p-0-10 ta-j">{{vm.movie.description}}</div>
+        </div>
+        <div class="col-12 col-lg-12">
+          <div class="p-0-10">
+            <div class="hs mt-10">Stars:</div>
+            <div class="row">
+              <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3" *ngFor="let star of vm.stars">
+                <a class="ilmov-tag w-100" routerLink="/star/{{star.id}}">
+                  <img class="fl" [style.backgroundImage]="star.bgmqImage">
+                  <span class="calc-100-80">{{star.name}}</span>
+                  <span class="starchar"></span>
+                  <span class="calc-100-80 ta-r va-t">{{star.characterName}}</span>
+                </a>
+              </div>
+            </div>
+            <div class="hs mt-10">Similar movies:</div>
+            <div class="row mbot-10">
+              <div class="col-6 col-sm-4 col-lg-3 col-xl-2" *ngFor="let simmovie of vm.similarMovies">
+                <a class="card alt-card" routerLink="/movie/{{simmovie.id}}">
+                  <img class="card-img-top mh-1" [src]="simmovie.mqImage" alt="">
+                  <div class="card-body p-2-5">
+                    <p class="card-text fs-14 ta-c mb-0">{{simmovie.name}}</p>
+                    <p class="card-text fs-12 ta-c btop">{{simmovie.year}}</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card b-0 trans">
+    <div class="card-header fs-18 fw-7 b-0 obj-header">
+      Scenes
+    </div>
+    <div class="card-body p-0">
+      <div class="row">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let clip of vm.clips">
+          <a class="card alt-card" routerLink="/clip/{{clip.id}}">
+            <img class="card-img-top mh-1" [src]="clip.mqImage" alt="">
+            <div class="card-body p-5-10">
+              <p class="card-text fs-15 mb-0">{{clip.name}}</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
+<ng-template #loading>
+  <app-roller></app-roller>
+</ng-template>
